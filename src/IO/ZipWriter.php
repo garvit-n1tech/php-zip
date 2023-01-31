@@ -76,6 +76,8 @@ class ZipWriter
             $this->writeLocalHeader($outStream, $zipEntry);
             $this->writeData($outStream, $zipEntry);
 
+            do_action( 'everest_backup_phpzip_after_write_data', $this->zipContainer->count() );
+
             if ($zipEntry->isDataDescriptorEnabled()) {
                 $this->writeDataDescriptor($outStream, $zipEntry);
             }
